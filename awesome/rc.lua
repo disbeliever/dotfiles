@@ -107,9 +107,14 @@ soundmenu = {
    { "renoise", "/home/nerevar/Renoise/renoise", "/home/nerevar/Renoise/Installer/renoise.png" }
 }
 
+miscmenu = {
+   { "tabata", "/home/nerevar/bin/tabata" },
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "development", devmenu },
-                                    { "education", educationmenu},
+                                    { "education", educationmenu },
+                                    { "misc", miscmenu },
                                     { "office", officemenu },
                                     { "sound", soundmenu, "/usr/share/icons/Tango/16x16/mimetypes/sound.png" },
                                     { "open terminal", terminal }
