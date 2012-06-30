@@ -7,6 +7,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 require("revelation")
+require("calendar2")
 
 local commands = {}
 
@@ -128,6 +129,7 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right"}, " %d %b %a, %H:%M ", 15)
+calendar2.addCalendarToWidget(mytextclock)
 
 --require('orglendar')
 --orglendar.files = { "/home/nerevar/org/gtd.org" }
@@ -473,4 +475,7 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 awesome.add_signal("exit", function(c) awful.util.spawn("killall -9 xxkb") end)
+
+
+
 -- }}}
