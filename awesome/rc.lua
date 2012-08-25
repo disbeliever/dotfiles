@@ -198,21 +198,22 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top",
-								screen = s,
-								height = 15,})
+                               screen = s,
+                               height = 15,})
+
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
-        {
-            mylauncher,
-            mytaglist[s],
-            mypromptbox[s],
-            layout = awful.widget.layout.horizontal.leftright
+       {
+           mylauncher,
+           mytaglist[s],
+           mypromptbox[s],
+           layout = awful.widget.layout.horizontal.leftright
         },
-        mylayoutbox[s],
-        mytextclock,
-        s == 1 and mysystray or nil,
-        mytasklist[s],
-        layout = awful.widget.layout.horizontal.rightleft
+       mylayoutbox[s],
+       mytextclock,
+       s == 1 and mysystray or nil,
+       mytasklist[s],
+       layout = awful.widget.layout.horizontal.rightleft
     }
 end
 -- }}}
@@ -472,7 +473,6 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 awesome.add_signal("exit", function(c) awful.util.spawn("killall -9 xxkb") end)
-
 
 
 -- }}}
