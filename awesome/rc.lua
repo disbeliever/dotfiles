@@ -131,10 +131,6 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 mytextclock = awful.widget.textclock({ align = "right"}, " %d %b %a, %H:%M ", 15)
 calendar2.addCalendarToWidget(mytextclock)
 
---require('orglendar')
---orglendar.files = { "/home/nerevar/org/gtd.org" }
---orglendar.register(mytextclock)
-
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -235,6 +231,7 @@ globalkeys = awful.util.table.join(
 	awful.key({ modkey }, "'", function() awful.util.spawn_with_shell(commands.dict) end ),
 	awful.key({ modkey }, "e", function() awful.util.spawn_with_shell("emacsclient -c") end ),
         awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("deadbeef") end ),
+        awful.key({ modkey }, "Scroll_Lock", function() awful.util.spawn_with_shell("/home/nerevar/bin/sw_power.sh") end ),
 	awful.key({ modkey }, "w",  revelation.revelation),
 	awful.key({ }, 10, function() awful.util.spawn_with_shell("notify-send Hello") end ),
         awful.key({ modkey, "Shift"   }, "n", 
