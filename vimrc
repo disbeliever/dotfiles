@@ -34,7 +34,7 @@ let g:NERDShutUp = 1
 
 "let b:encindex=0
 
-:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:hi CursorLine   cterm=NONE ctermbg=darkyellow ctermfg=white guibg=darkred guifg=white
 :hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 ":nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 set cursorline

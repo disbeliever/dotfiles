@@ -273,6 +273,7 @@ globalkeys = awful.util.table.join(
             end
         end),
 
+    awful.key({ modkey, "Control" }, "Return", function () awful.util.spawn(terminal .. " -e 'tmux attach'") end),
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
