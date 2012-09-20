@@ -1,3 +1,4 @@
+!*customization: -color
 Xcursor.theme:	gentoo-silver
 Xcursor.size:	24
 Xft.rgba:	none
@@ -24,7 +25,7 @@ XTerm*faceSize:	9
 XTerm*scrollBar:	False
 XTerm*utf8Title:	True
 XTerm*savelines:	500
-XTerm*termName:	xterm-256colors
+XTerm*termName:	xterm-256color
 URxvt*font:	xft:DejaVu Sans Mono:pixelsize=12
 URxvt*foreground:	#eeeeee
 URxvt*scrollBar:	False
