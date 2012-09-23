@@ -4,6 +4,8 @@ set mouse=a
 set ignorecase
 set paste
 set tabstop=4
+set directory=/tmp
+set backupdir=/tmp
 filetype on
 filetype plugin on
 filetype indent on
