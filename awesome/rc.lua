@@ -11,7 +11,7 @@ require("calendar2")
 
 local commands = {}
 
-commands.screenwin = "scrot 'scrot_%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~'"
+commands.screenwin = "scrot 'scrot_%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/shots'"
 commands.calculator = "qalculate-gtk"
 commands.dict = "stardict"
 
