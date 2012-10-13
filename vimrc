@@ -6,6 +6,7 @@ set paste
 set tabstop=4
 set directory=/tmp
 set backupdir=/tmp
+set guifont="Droid Sans Mono 10"
 filetype on
 filetype plugin on
 filetype indent on
@@ -17,8 +18,6 @@ colorscheme zenburn
 set nu!
 set grepprg=grep\ -nH\ $*
 set pastetoggle=<F5>
-
-set guifont=Courier\ New\ 10
 
 let g:pyindent_open_paren = 4
 let g:pyindent_nested_paren = 4
