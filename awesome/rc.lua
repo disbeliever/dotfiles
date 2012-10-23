@@ -438,6 +438,7 @@ run_once("/home/nerevar/bin/remind.sh")
 run_once("xset", "r rate 300 30")
 run_once("wmname LG3D")
 run_once("xxkb")
+run_once("emacs --daemon")
 -- }}}
 
 -- {{{ Signals
