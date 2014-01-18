@@ -14,6 +14,7 @@ local commands = {}
 commands.screenwin = "scrot 'scrot_%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/shots'"
 commands.calculator = "qalculate-gtk"
 commands.dict = "stardict"
+commands.dict_japan = "tagainijisho"
 
 
 -- {{{ Variable definitions
@@ -229,6 +230,7 @@ globalkeys = awful.util.table.join(
 	awful.key({ modkey }, "/", function() awful.util.spawn_with_shell(commands.calculator) end ),
 	awful.key({ modkey }, "Print", function() awful.util.spawn_with_shell(commands.screenwin) end ),
 	awful.key({ modkey }, "'", function() awful.util.spawn_with_shell(commands.dict) end ),
+	awful.key({ modkey }, ";", function() awful.util.spawn_with_shell(commands.dict_japan) end ),
 	awful.key({ modkey }, "e", function() awful.util.spawn_with_shell("emacsclient -c") end ),
         awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("deadbeef") end ),
         awful.key({ modkey }, "z", function() awful.util.spawn_with_shell("zim") end ),
