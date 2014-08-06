@@ -1,0 +1,17 @@
+XXkb.controls.two_state:	 no
+
+XXkb*label.text.1:	 En
+XXkb*label.text.2:	 Ru
+XXkb*label.text.3:	 He
+
+XXkb.mainwindow.type:	 tray
+XXkb.mainwindow.label.enable:	 yes
+XXkb.mainwindow.enable:	 yes
+XXkb.mainwindow.appicon:	 no
+XXkb.mainwindow.geometry:	 16x16+0+0
+XXkb.mainwindow.in_tray: true
+XXkb.mainwindow.label.background:	lightblue
+XXkb.mainwindow.label.foreground:	blue4
+XXkb.mainwindow.label.font:	 -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+
+XXkb.button.enable:	 no
