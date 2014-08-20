@@ -102,7 +102,6 @@ educationmenu = {
 
 soundmenu = {
    { "audacity", "audacity" },
-   { "energyXT", "energyXT" },
    { "Guitar Pro", "/opt/GuitarPro6/gp-launcher.sh" },
    { "lmms", "lmms" },
    { "paulstretch", "paulstretch" },
