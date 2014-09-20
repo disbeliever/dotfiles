@@ -81,7 +81,6 @@ prog_word_viewer = "\"/home/nerevar/.wine/drive_c/Program Files/Microsoft Office
 prog_kompas_viewer = "\"/home/nerevar/.wine/drive_c/Program Files/ASCON/KOMPAS-3D Viewer V12/Bin/kViewer.Exe\""
 
 devmenu = {
-   { "cppcheck", "cppcheck-gui" },
    { "qt designer", "designer" },
    { "qt assistant", "assistant" },
 }
@@ -103,7 +102,6 @@ educationmenu = {
 soundmenu = {
    { "audacity", "audacity" },
    { "Guitar Pro", "/opt/GuitarPro6/gp-launcher.sh" },
-   { "lmms", "lmms" },
    { "paulstretch", "paulstretch" },
    { "renoise", "/home/nerevar/Renoise/renoise", "/home/nerevar/Renoise/Installer/renoise.png" }
 }
@@ -112,12 +110,17 @@ miscmenu = {
    { "tabata", "/home/nerevar/bin/tabata" },
 }
 
+vmsmenu = {
+   { "Windows XP", "VBoxManage startvm \"Windows XP\"" }
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "development", devmenu },
                                     { "education", educationmenu },
                                     { "misc", miscmenu },
                                     { "office", officemenu },
                                     { "sound", soundmenu, "/usr/share/icons/Tango/16x16/mimetypes/sound.png" },
+                                    { "VMs", vmsmenu },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -129,7 +132,7 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right"}, " %d %b %a, %H:%M ", 15)
-calendar2.addCalendarToWidget(mytextclock)
+calendar2.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
