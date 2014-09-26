@@ -16,11 +16,11 @@ commands.calculator = "qalculate-gtk"
 commands.dict = "stardict"
 commands.dict_japan = "tagainijisho"
 
+local home = os.getenv("HOME")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/nerevar/.config/awesome/themes/default/theme.lua")
--- beautiful.init("/home/nerevar/.config/awesome/themes/IoGA/theme.lua")
+beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -88,9 +88,8 @@ devmenu = {
 officemenu = {
    { "word viewer", "wine " .. prog_word_viewer },
    { "kompas viewer", "wine " .. prog_kompas_viewer },
-   { "VMLAB", "wine " .. "/home/nerevar/.wine/drive_c/VMLAB/bin/VMLAB.EXE" },
-   { "yEd", "/home/nerevar/local/yEd/yEd" },
-   { "xmind", "/home/nerevar/local/xmind/XMind" },
+   { "yEd", home .. "/local/yEd/yEd" },
+   { "xmind", home .. "/local/xmind/XMind" },
 }
 
 educationmenu = {
@@ -103,15 +102,15 @@ soundmenu = {
    { "audacity", "audacity" },
    { "Guitar Pro", "/opt/GuitarPro6/gp-launcher.sh" },
    { "paulstretch", "paulstretch" },
-   { "renoise", "/home/nerevar/Renoise/renoise", "/home/nerevar/Renoise/Installer/renoise.png" }
+   { "renoise", home .. "/Renoise/renoise", home .. "/Renoise/Installer/renoise.png" }
 }
 
 miscmenu = {
-   { "tabata", "/home/nerevar/bin/tabata" },
+   { "tabata", home .. "/bin/tabata" },
 }
 
 vmsmenu = {
-   { "Windows XP", "VBoxManage startvm \"Windows XP\"" }
+   { "Windows XP", "VBoxManage startvm \"e0f756f2-3e63-4164-aa7f-43daba0d59d1\"" }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -236,7 +235,7 @@ globalkeys = awful.util.table.join(
 	awful.key({ modkey }, "e", function() awful.util.spawn_with_shell("emacsclient -c") end ),
         awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("deadbeef") end ),
         awful.key({ modkey }, "z", function() awful.util.spawn_with_shell("zim") end ),
-        awful.key({ modkey }, "Scroll_Lock", function() awful.util.spawn_with_shell("sudo /home/nerevar/bin/sw_power.sh") end ),
+        awful.key({ modkey }, "Scroll_Lock", function() awful.util.spawn_with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
 	awful.key({ modkey }, "w",  revelation.revelation),
 	awful.key({ }, 10, function() awful.util.spawn_with_shell("notify-send Hello") end ),
         awful.key({ modkey, "Shift"   }, "n", 
@@ -441,7 +440,7 @@ function run_once(prg,arg_string,pname,screen)
     end
 end
 
-run_once("/home/nerevar/bin/remind.sh")
+run_once(home .. "/bin/remind.sh")
 run_once("xset", "r rate 300 30")
 run_once("wmname LG3D")
 run_once("xxkb")
