@@ -382,8 +382,6 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "MPlayer" },
       properties = { floating = true, size_hints_honor = true } },
-    { rule = { class = "mplayer2" },
-      properties = { floating = true, size_hints_honor = true } },
     { rule = { class = "mpv" },
       properties = { floating = true, size_hints_honor = true } },
     { rule = { class = "pinentry" },
