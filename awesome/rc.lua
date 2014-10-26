@@ -1,13 +1,14 @@
 -- Standard awesome library
-require("awful")
+local awful = require("awful")
 require("awful.autofocus")
-require("awful.rules")
+awful.rules = require("awful.rules")
 -- Theme handling library
-require("beautiful")
+local beautiful = require("beautiful")
 -- Notification library
-require("naughty")
-require("revelation")
-require("calendar2")
+local naughty = require("naughty")
+local revelation = require("revelation")
+local calendar2 = require("calendar2")
+local wibox = require("awful.wibox")
 
 local commands = {}
 
@@ -135,6 +136,7 @@ calendar2.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
+--mysystray = wibox.widget.systray()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
