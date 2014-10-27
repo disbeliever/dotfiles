@@ -8,7 +8,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local revelation = require("revelation")
 local calendar2 = require("calendar2")
-local wibox = require("awful.wibox")
+local wibox = require("wibox")
+local gears = require("gears")
 
 local commands = {}
 
@@ -21,7 +22,8 @@ local home = os.getenv("HOME")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
+local theme = beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
+gears.wallpaper.maximized(home .. "/wallpapers/vocaloid_grey.jpg")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -125,18 +127,18 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 -- }}}
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right"}, " %d %b %a, %H:%M ", 15)
+mytextclock = awful.widget.textclock(" %d %b %a, %H:%M ", 15)
 calendar2.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
 
 -- Create a systray
-mysystray = widget({ type = "systray" })
---mysystray = wibox.widget.systray()
+--mysystray = widget({ type = "systray" })
+mysystray = wibox.widget.systray()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -179,7 +181,8 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+    --mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+    mypromptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
@@ -189,32 +192,35 @@ for s = 1, screen.count() do
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
+    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
-    mytasklist[s] = awful.widget.tasklist(function(c)
-                                              return awful.widget.tasklist.label.currenttags(c, s)
-                                          end, mytasklist.buttons)
+    --mytasklist[s] = awful.widget.tasklist(function(c)
+    --                                          return awful.widget.tasklist.label.currenttags(c, s)
+    --                                      end, mytasklist.buttons)
+    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top",
                                screen = s,
                                height = 15,})
 
-    -- Add widgets to the wibox - order matters
-    mywibox[s].widgets = {
-       {
-           mylauncher,
-           mytaglist[s],
-           mypromptbox[s],
-           layout = awful.widget.layout.horizontal.leftright
-        },
-       mylayoutbox[s],
-       mytextclock,
-       s == 1 and mysystray or nil,
-       mytasklist[s],
-       layout = awful.widget.layout.horizontal.rightleft
-    }
+    local left_layout = wibox.layout.fixed.horizontal()
+	left_layout:add(mylauncher)
+	left_layout:add(mytaglist[s])
+	left_layout:add(mypromptbox[s])
+
+    local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(mysystray)
+    right_layout:add(mytextclock)
+    right_layout:add(mylayoutbox[s])
+
+    local layout = wibox.layout.align.horizontal()
+    layout:set_left(left_layout)
+    layout:set_middle(mytasklist[s])
+    layout:set_right(right_layout)
+
+    mywibox[s]:set_widget(layout)
 end
 -- }}}
 
@@ -451,12 +457,12 @@ run_once("emacs --daemon")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
-client.add_signal("manage", function (c, startup)
+client.connect_signal("manage", function (c, startup)
     -- Add a titlebar
     -- awful.titlebar.add(c, { modkey = modkey })
 
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
+    c:connect_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
             and awful.client.focus.filter(c) then
             client.focus = c
@@ -476,11 +482,22 @@ client.add_signal("manage", function (c, startup)
     end
 end)
 
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awesome.add_signal("exit", function(c) awful.util.spawn("killall -9 xxkb") end)
-awesome.add_signal("exit", function(c) awful.util.spawn("killall -9 remind") end)
+awesome.connect_signal("exit", function(c) awful.util.spawn("killall -9 xxkb") end)
+awesome.connect_signal("exit", function(c) awful.util.spawn("killall -9 remind") end)
 
+-- Execute command and return its output. You probably won't only execute commands with one
+-- line of output
+function execute_command(command)
+   local fh = io.popen(command)
+   local str = ""
+   for i in fh:lines() do
+      str = str .. i
+   end
+   io.close(fh)
+   return str
+end
 
 -- }}}
