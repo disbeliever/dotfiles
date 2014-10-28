@@ -1,7 +1,8 @@
 -- Standard awesome library
+local gears = require("gears")
 local awful = require("awful")
-require("awful.autofocus")
 awful.rules = require("awful.rules")
+require("awful.autofocus")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -9,7 +10,6 @@ local naughty = require("naughty")
 local revelation = require("revelation")
 local calendar2 = require("calendar2")
 local wibox = require("wibox")
-local gears = require("gears")
 
 local commands = {}
 
@@ -150,8 +150,8 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, awful.tag.viewnext),
-                    awful.button({ }, 5, awful.tag.viewprev)
+                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
+                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
@@ -382,7 +382,7 @@ awful.rules.rules = {
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
-                     focus = true,
+                     focus = awful.client.focus.filter,
                      keys = clientkeys,
                      size_hints_honor = false,
                      buttons = clientbuttons } },
