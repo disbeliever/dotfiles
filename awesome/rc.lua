@@ -137,7 +137,6 @@ mytextclock = awful.widget.textclock(" %d %b %a, %H:%M ", 15)
 calendar2.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
 
 -- Create a systray
---mysystray = widget({ type = "systray" })
 mysystray = wibox.widget.systray()
 
 -- Create a wibox for each screen and add it
@@ -181,7 +180,6 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
-    --mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
     mypromptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
@@ -195,9 +193,6 @@ for s = 1, screen.count() do
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
-    --mytasklist[s] = awful.widget.tasklist(function(c)
-    --                                          return awful.widget.tasklist.label.currenttags(c, s)
-    --                                      end, mytasklist.buttons)
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
@@ -206,9 +201,9 @@ for s = 1, screen.count() do
                                height = 15,})
 
     local left_layout = wibox.layout.fixed.horizontal()
-	left_layout:add(mylauncher)
-	left_layout:add(mytaglist[s])
-	left_layout:add(mypromptbox[s])
+    left_layout:add(mylauncher)
+    left_layout:add(mytaglist[s])
+    left_layout:add(mypromptbox[s])
 
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(mysystray)
@@ -245,7 +240,6 @@ globalkeys = awful.util.table.join(
         awful.key({ modkey }, "z", function() awful.util.spawn_with_shell("zim") end ),
         awful.key({ modkey }, "Scroll_Lock", function() awful.util.spawn_with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
 	awful.key({ modkey }, "w",  revelation.revelation),
-	awful.key({ }, 10, function() awful.util.spawn_with_shell("notify-send Hello") end ),
         awful.key({ modkey, "Shift"   }, "n", 
         function()
             local tag = awful.tag.selected()
@@ -424,8 +418,6 @@ awful.rules.rules = {
       properties = { tag = tags[1][5] } },
     { rule = { class = "Emacs" },
       properties = { tag = tags[1][1] } },
-    --{ rule = { class = "Fbreader" },
-    --  properties = { floating = true } },
     { rule = { class = "Gxmessage" },
       properties = { floating = true } },
  }
