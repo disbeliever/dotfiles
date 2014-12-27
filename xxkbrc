@@ -15,3 +15,5 @@ XXkb.mainwindow.label.foreground:	blue4
 XXkb.mainwindow.label.font:	 -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 
 XXkb.button.enable:	 no
+
+XXkb.app_list.wm_name.ignore: *
