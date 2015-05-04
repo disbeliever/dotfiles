@@ -5,12 +5,14 @@ framedrop=vo
 vd-lavc=threads=2:fast
 
 ass-hinting=native
-ass-use-margins=yes
+sub-use-margins=yes
+ass-force-margins=yes
 osd-font='Ubuntu'
 sub-codepage=enca:ru:cp1251
 af=scaletempo
 alang=jpn,eng,rus
 slang=eng,rus
+osc=no
 
 [vdpau]
 hwdec=vdpau
