@@ -80,8 +80,8 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-prog_word_viewer = "\"/home/nerevar/.wine/drive_c/Program Files/Microsoft Office/OFFICE11/WORDVIEW.EXE\""
-prog_kompas_viewer = "\"/home/nerevar/.wine/drive_c/Program Files/ASCON/KOMPAS-3D Viewer V12/Bin/kViewer.Exe\""
+prog_word_viewer = "'" .. home .. "/.wine/drive_c/Program Files/Microsoft Office/OFFICE11/WORDVIEW.EXE'"
+prog_transcribe = "'" .. home .. "/.wine/drive_c/Program Files/Transcribe!/Transcribe.exe'"
 
 devmenu = {
    { "qt designer", "designer" },
@@ -90,7 +90,6 @@ devmenu = {
 
 officemenu = {
    { "word viewer", "wine " .. prog_word_viewer },
-   { "kompas viewer", "wine " .. prog_kompas_viewer },
    { "yEd", home .. "/local/yEd/yEd" },
    { "xmind", home .. "/local/xmind/XMind" },
 }
@@ -105,7 +104,8 @@ soundmenu = {
    { "audacity", "audacity" },
    { "Guitar Pro", "/opt/GuitarPro6/gp-launcher.sh" },
    { "paulstretch", "paulstretch" },
-   { "renoise", home .. "/Renoise/renoise", home .. "/Renoise/Installer/renoise.png" }
+   { "renoise", home .. "/Renoise/renoise", home .. "/Renoise/Installer/renoise.png" },
+   { "transcribe", "wine " .. prog_transcribe },
 }
 
 miscmenu = {
@@ -399,7 +399,7 @@ awful.rules.rules = {
     { rule = { class = "Qalculate-gtk" },
       properties = { floating = true } },
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2] } },
+      properties = { tag = tags[1][7] } },
     { rule = { class = "Qutim" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Chromium-browser" },
@@ -440,6 +440,7 @@ function run_once(prg,arg_string,pname,screen)
     end
 end
 
+run_once("compton")
 run_once(home .. "/bin/remind.sh")
 run_once("xset", "r rate 300 30")
 run_once("wmname LG3D")
