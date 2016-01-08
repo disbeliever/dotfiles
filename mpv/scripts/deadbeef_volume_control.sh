@@ -36,12 +36,23 @@ function get-volume {
     dbus-get-any-property "org.mpris.MediaPlayer2.Player" "Volume"
 }
 
+function get-online {
+    dbus-send --session \
+              --dest=org.freedesktop.DBus \
+              --type=method_call          \
+              --print-reply               \
+              /org/freedesktop/DBus       \
+              org.freedesktop.DBus.ListNames | grep org.mpris.MediaPlayer2.${player}
+}
+
 if [ "$#" -eq 1 ]; then
     param=$1
 
-    if [ $param == "full" ]; then
-	dbus-set-player-property Volume variant:double:1.0 >/dev/null
-    elif [ $param == "low" ]; then
-	dbus-set-player-property Volume variant:double:0.6 >/dev/null
+    if [[ $(get-online) != "" ]]; then
+        if [ $param == "full" ]; then
+	    dbus-set-player-property Volume variant:double:1.0 >/dev/null
+        elif [ $param == "low" ]; then
+	    dbus-set-player-property Volume variant:double:0.6 >/dev/null
+        fi
     fi
 fi
