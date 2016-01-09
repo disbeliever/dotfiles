@@ -1,7 +1,8 @@
-require "mp.msg"
-
 function start_handler(event)
-   os.execute("deadbeef_volume_control.sh low")
+   local aid = mp.get_property("aid")
+   if aid ~= "no" then
+      os.execute("deadbeef_volume_control.sh low")
+   end
 end
 
 function exit_handler(event)
