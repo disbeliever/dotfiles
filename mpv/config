@@ -1,5 +1,6 @@
 vo=opengl:pbo
 
+autofit-larger=90%
 monitoraspect=5:4
 framedrop=vo
 vd-lavc=threads=2:fast
