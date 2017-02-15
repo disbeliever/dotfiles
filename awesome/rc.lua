@@ -23,10 +23,20 @@ local home = os.getenv("HOME")
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 local theme = beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
-gears.wallpaper.maximized(home .. "/wallpapers/vocaloid_grey.jpg")
+--gears.wallpaper.maximized(home .. "/wallpapers/vocaloid_grey.jpg")
+--gears.wallpaper.fit(home .. "/wallpapers/anime/ANIME-PICTURES.NET_-_105682-1700x1194-vocaloid-koi+wa+sensou+%28vocaloid%29-hatsune+miku-megurine+luka-kagamine+rin-kagamine+len.jpg")
+local wallpaper_day = home .. "/wallpapers/anime/8e11719361281dcb31508ba89e823d85.jpg"
+local wallpaper_night = home .. "/wallpapers/Jaggle_PimpJeDesktop_17-251992.jpg"
+local current_hour = tonumber(os.date("%H"))
+local current_minute = tonumber(os.date("%M"))
+if (current_hour > 19 and current_minute > 15) or (current_hour > 20) then
+   gears.wallpaper.centered(wallpaper_night)
+else
+   gears.wallpaper.fit(wallpaper_day)
+end
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "st"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -102,7 +112,7 @@ educationmenu = {
 
 soundmenu = {
    { "audacity", "audacity" },
-   { "Guitar Pro", "/opt/GuitarPro6/gp-launcher.sh" },
+   { "Guitar Pro", "apulse /opt/GuitarPro6/GuitarPro" },
    { "paulstretch", "paulstretch" },
    { "renoise", home .. "/Renoise/renoise", home .. "/Renoise/Installer/renoise.png" },
    { "transcribe", "wine " .. prog_transcribe },
@@ -402,7 +412,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][7] } },
     { rule = { class = "Qutim" },
       properties = { tag = tags[1][3] } },
-    { rule = { class = "Chromium-browser" },
+    { rule = { class = "Chromium-browser-chromium" },
       properties = { tag = tags[1][2] } },
     { rule = { class = "Transmission" },
       properties = { tag = tags[1][3] } },
@@ -446,6 +456,8 @@ run_once("xset", "r rate 300 30")
 run_once("wmname LG3D")
 run_once("xxkb")
 run_once("emacs --daemon")
+run_once("chromium")
+run_once("transmission-gtk")
 -- }}}
 
 -- {{{ Signals
