@@ -1,13 +1,16 @@
-vo=opengl:pbo
+vo=opengl
+opengl-pbo=yes
 
 autofit-larger=90%
 monitoraspect=5:4
 framedrop=vo
-vd-lavc=threads=2:fast
+vd-lavc-fast=yes
+vd-lavc-threads=2
+#vd-lavc=threads=2:fast
 
-ass-hinting=native
+sub-ass-hinting=native
 sub-use-margins=yes
-ass-force-margins=yes
+sub-ass-force-margins=yes
 osd-font='Ubuntu'
 sub-codepage=enca:ru:cp1251
 af=scaletempo
@@ -17,7 +20,7 @@ osc=no
 
 [vdpau]
 hwdec=vdpau
-vo=vdpau:fps=-1
+vo-vdpau-fps=-1
 hwdec-codecs=h264,mpeg2video
 
 [default]
