@@ -5,6 +5,7 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <Cyrillic_be> <Cyrillic_be> : "«"
 <Multi_key> <Cyrillic_yu> <Cyrillic_yu> : "»"
 <Multi_key> <equal> <Cyrillic_IO> : "≈"
+<Multi_key> <p> <p> : "₽" U20BD # RUSSIAN RUBLE SIGN
 
 # COMBINING SIGNS
 <Multi_key> <apostrophe> <apostrophe> : "́" U0301
