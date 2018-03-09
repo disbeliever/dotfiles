@@ -23,10 +23,8 @@ local home = os.getenv("HOME")
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 local theme = beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
---gears.wallpaper.maximized(home .. "/wallpapers/vocaloid_grey.jpg")
---gears.wallpaper.fit(home .. "/wallpapers/anime/ANIME-PICTURES.NET_-_105682-1700x1194-vocaloid-koi+wa+sensou+%28vocaloid%29-hatsune+miku-megurine+luka-kagamine+rin-kagamine+len.jpg")
 local wallpaper_day = home .. "/wallpapers/anime/8e11719361281dcb31508ba89e823d85.jpg"
-local wallpaper_night = home .. "/wallpapers/Jaggle_PimpJeDesktop_17-251992.jpg"
+local wallpaper_night = home .. "/wallpapers/anime/ANIME-PICTURES.NET_-_349497-1920x1080-black+bullet-kinema+citrus-tendou+kisara-assassinwarrior-long+hair-single.jpg"
 local current_hour = tonumber(os.date("%H"))
 local current_minute = tonumber(os.date("%M"))
 if (current_hour > 19 and current_minute > 15) or (current_hour > 20) then
@@ -69,7 +67,7 @@ layouts =
 -- Define a tag table which hold all screen tags.
 tags = {
 	names = { "dev", "@", "net", "fm", 5, 6, 7, 8 },
-	layout = { layouts[2], layouts[4], layouts[2], layouts[2], layouts[2],
+	layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2],
 	layouts[2], layouts[2], layouts[2] }
 }
 for s = 1, screen.count() do
@@ -402,6 +400,8 @@ awful.rules.rules = {
     --  properties = { floating = true } },
     { rule = { class = "Kanjipad" },
       properties = { floating = true } },
+    { rule = { class = "fbreader" },
+      properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp", role = "gimp-toolbox" },
@@ -416,7 +416,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { class = "Transmission" },
       properties = { tag = tags[1][3] } },
-    { rule = { class = "Krusader" },
+    { rule = { class = "krusader" },
       properties = { tag = tags[1][4] } },
     --{ rule = { class = "Krusader", name = "Копирование" },
     --  properties = { floating = true } },
