@@ -140,7 +140,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+--mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -244,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            --mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -310,9 +310,9 @@ globalkeys = awful.util.table.join(
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
+    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
+    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
@@ -525,9 +525,9 @@ awful.rules.rules = {
       }, properties = { floating = true }},
 
     -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
+    -- { rule_any = {type = { "normal", "dialog" }
+    --   }, properties = { titlebars_enabled = true }
+    -- },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { class = "Firefox" },
@@ -543,7 +543,7 @@ awful.rules.rules = {
     { rule = { class = "Zim" },
       properties = { screen = 1, tag = "5" } },
     { rule = { class = "Emacs" },
-      properties = { screen = 1, tag = "dev" } },
+      properties = { screen = 1, tag = "dev", size_hints_honor = false } },
 }
 -- }}}
 
