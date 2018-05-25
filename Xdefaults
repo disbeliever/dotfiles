@@ -34,7 +34,7 @@ URxvt*background:	#2e3436
 URxvt*savelines:	500
 URxvt*utf8Title:	True
 URxvt*altIsNotMeta:	true
-Emacs.Font:	-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
+Emacs.Font:     Ubuntu Mono-12
 Emacs*useXIM:	false
 *color14:	#93e0e3
 *color6:	#418179
