@@ -11,7 +11,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
-local calendar2 = require("calendar2")
+local calendar = require("calendar")
 
 local commands = {}
 commands.screenwin = "scrot 'scrot_%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/shots'"
@@ -145,7 +145,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-calendar2.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
+--calendar.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
+calendar({}):attach(mytextclock)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
