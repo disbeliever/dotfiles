@@ -489,7 +489,8 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                     size_hints_honor = false
      }
     },
 
@@ -544,7 +545,7 @@ awful.rules.rules = {
     { rule = { class = "Zim" },
       properties = { screen = 1, tag = "5" } },
     { rule = { class = "Emacs" },
-      properties = { screen = 1, tag = "dev", size_hints_honor = false } },
+      properties = { screen = 1, tag = "dev" } },
 }
 -- }}}
 
