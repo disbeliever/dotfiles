@@ -142,9 +142,13 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 --mykeyboardlayout = awful.widget.keyboardlayout()
 
+--myorgclock = awful.widget.watch("emacsclient -e \"(if (org-clocking-p) (string-trim (substring-no-properties (org-clock-get-clock-string))) ' )\"")
+myorgclock = wibox.widget.textbox()
+myorgclock.text = ""
+
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M", 15)
 --calendar.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
 calendar({}):attach(mytextclock)
 
@@ -246,6 +250,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             --mykeyboardlayout,
+            myorgclock,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -265,14 +270,15 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
    -- User defined
-   awful.key({ modkey }, "/", function() awful.util.spawn_with_shell(commands.calculator) end ),
-   awful.key({ modkey }, "Print", function() awful.util.spawn_with_shell(commands.screenwin) end ),
-   awful.key({ modkey }, "'", function() awful.util.spawn_with_shell(commands.dict) end ),
-   awful.key({ modkey }, ";", function() awful.util.spawn_with_shell(commands.dict_japan) end ),
-   awful.key({ modkey }, "e", function() awful.util.spawn_with_shell("emacsclient -c") end ),
-   awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("deadbeef") end ),
-   awful.key({ modkey }, "z", function() awful.util.spawn_with_shell("zim") end ),
-   awful.key({ modkey }, "Scroll_Lock", function() awful.util.spawn_with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
+   awful.key({ modkey }, "/", function() awful.spawn(commands.calculator) end ),
+   awful.key({ modkey }, "Print", function() awful.spawn(commands.screenwin) end ),
+   awful.key({ modkey }, "'", function() awful.spawn(commands.dict) end ),
+   awful.key({ modkey }, ";", function() awful.spawn(commands.dict_japan) end ),
+   awful.key({ modkey }, ".", function() awful.spawn.with_shell("krusader 2> /dev/null") end ),
+   awful.key({ modkey }, "e", function() awful.spawn("emacsclient -c") end ),
+   awful.key({ modkey }, "d", function() awful.spawn("deadbeef") end ),
+   awful.key({ modkey }, "z", function() awful.spawn("zim") end ),
+   awful.key({ modkey }, "Scroll_Lock", function() awful.spawn.with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
    --awful.key({ modkey }, "w",  revelation.revelation),
    awful.key({ modkey, "Shift"   }, "n", 
       function()
@@ -560,9 +566,9 @@ function run_once(prg,arg_string,pname,screen)
     end
 
     if not arg_string then 
-        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+        awful.spawn.with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")")
     else
-        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. " " .. arg_string .. ")",screen)
+        awful.spawn.with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. " " .. arg_string .. ")")
     end
 end
 
