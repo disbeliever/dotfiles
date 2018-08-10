@@ -148,7 +148,7 @@ myorgclock.text = ""
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M", 15)
+mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M ", 15)
 --calendar.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
 calendar({}):attach(mytextclock)
 
