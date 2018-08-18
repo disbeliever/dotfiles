@@ -51,8 +51,8 @@ end
 --beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
 beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
 
-local wallpaper_day = home .. "/wallpapers/anime/8e11719361281dcb31508ba89e823d85.jpg"
-local wallpaper_night = home .. "/wallpapers/anime/ANIME-PICTURES.NET_-_349497-1920x1080-black+bullet-kinema+citrus-tendou+kisara-assassinwarrior-long+hair-single.jpg"
+local wallpaper_day = home .. "/.config/awesome/wallpapers/wallpaper_day"
+local wallpaper_night = home .. "/.config/awesome/wallpapers/wallpaper_night"
 local current_hour = tonumber(os.date("%H"))
 local current_minute = tonumber(os.date("%M"))
 if (current_hour > 19 and current_minute > 15) or (current_hour > 20) then
