@@ -12,6 +12,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local calendar = require("calendar")
+local volume_control = require("volume-control")
 
 local commands = {}
 commands.screenwin = "scrot 'scrot_%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/shots'"
@@ -152,6 +153,8 @@ mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M ", 15)
 --calendar.addCalendarToWidget(mytextclock, "<b><span color='white'>%s</span></b>")
 calendar({}):attach(mytextclock)
 
+volumecfg = volume_control({})
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -252,6 +255,7 @@ awful.screen.connect_for_each_screen(function(s)
             --mykeyboardlayout,
             myorgclock,
             wibox.widget.systray(),
+            volumecfg,
             mytextclock,
             s.mylayoutbox,
         },
