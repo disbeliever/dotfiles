@@ -2,7 +2,6 @@ vo=opengl
 opengl-pbo=yes
 
 autofit-larger=90%
-monitoraspect=5:4
 framedrop=vo
 vd-lavc-fast=yes
 vd-lavc-threads=2
@@ -20,6 +19,7 @@ osc=no
 
 [vdpau]
 hwdec=vdpau
+vo=vdpau
 vo-vdpau-fps=-1
 hwdec-codecs=h264,mpeg2video
 
