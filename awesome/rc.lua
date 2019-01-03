@@ -541,6 +541,10 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
+    -- Show dialogs centered
+    { rule = { type = "dialog" },
+      properties = { placement = awful.placement.centered }},
+
     -- Add titlebars to normal clients and dialogs
     -- { rule_any = {type = { "normal", "dialog" }
     --   }, properties = { titlebars_enabled = true }
