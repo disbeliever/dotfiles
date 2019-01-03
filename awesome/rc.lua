@@ -284,6 +284,11 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, "z", function() awful.spawn("zim") end ),
    awful.key({ modkey }, "Scroll_Lock", function() awful.spawn.with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
    --awful.key({ modkey }, "w",  revelation.revelation),
+
+   -- Volume control
+   awful.key({ modkey }, "Up", function() volumecfg:up() end),
+   awful.key({ modkey }, "Down", function() volumecfg:down() end),
+
    awful.key({ modkey, "Shift"   }, "n", 
       function()
          local tag = awful.tag.selected()
