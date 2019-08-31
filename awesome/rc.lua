@@ -19,6 +19,7 @@ commands.screenwin = "scrot 'scrot_%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/shot
 commands.calculator = "qalculate-gtk"
 commands.dict = "stardict"
 commands.dict_japan = "tagainijisho"
+commands.lock = "i3lock"
 
 local home = os.getenv("HOME")
 
@@ -281,6 +282,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, ".", function() awful.spawn.with_shell("krusader 2> /dev/null") end ),
    awful.key({ modkey }, "e", function() awful.spawn("emacsclient -c") end ),
    awful.key({ modkey }, "d", function() awful.spawn("deadbeef") end ),
+   awful.key({ modkey }, "l", function() awful.spawn(commands.lock) end ),
    awful.key({ modkey }, "z", function() awful.spawn("zim") end ),
    awful.key({ modkey }, "Scroll_Lock", function() awful.spawn.with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
    --awful.key({ modkey }, "w",  revelation.revelation),
