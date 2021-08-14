@@ -282,9 +282,10 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, ".", function() awful.spawn.with_shell("krusader 2> /dev/null") end ),
    awful.key({ modkey }, "e", function() awful.spawn("emacsclient -c") end ),
    awful.key({ modkey }, "d", function() awful.spawn("deadbeef") end ),
-   awful.key({ modkey }, "l", function() awful.spawn(commands.lock) end ),
+   awful.key({ modkey, "Control" }, "l", function() awful.spawn(commands.lock) end ),
    awful.key({ modkey }, "z", function() awful.spawn("zim") end ),
    awful.key({ modkey }, "Scroll_Lock", function() awful.spawn.with_shell("sudo " .. home .. "/bin/sw_power.sh") end ),
+   awful.key({ modkey }, "KP_Begin", function() awful.spawn("deadbeef --play-pause") end ),
    --awful.key({ modkey }, "w",  revelation.revelation),
 
    -- Volume control
