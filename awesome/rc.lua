@@ -118,7 +118,9 @@ myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
+   { "quit", function() awesome.quit() end},
+   { "reboot", "sudo reboot" },
+   { "shutdown", "sudo halt -p" }
 }
 
 educationmenu = {
