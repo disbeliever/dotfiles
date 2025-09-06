@@ -294,6 +294,14 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, "Up", function() volumecfg:up() end),
    awful.key({ modkey }, "Down", function() volumecfg:down() end),
 
+   -- Playback control
+   awful.key({ }, "XF86AudioPlay", function() awful.spawn("playerctl play-pause") end,
+      {description="toggle playback", group="media"}),
+   awful.key({ }, "XF86AudioNext", function() awful.spawn("playerctl next") end,
+      {description="next track", group="media"}),
+   awful.key({ }, "XF86AudioPrev", function() awful.spawn("playerctl prev") end,
+      {description="previous track", group="media"}),
+
    awful.key({ modkey, "Shift"   }, "n", 
       function()
          local tag = awful.tag.selected()
